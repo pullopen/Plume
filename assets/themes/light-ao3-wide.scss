@@ -562,7 +562,7 @@ body>header nav#menu {
     transform: skewX(0);
     left: -1em;
     padding: 1.5em 1.5em 1.5em 2.5em;
-    background: #ddd;
+    background: #aaa;
     align-self: flex-start
 }
 body>header nav#menu a {
@@ -1281,11 +1281,11 @@ body>header nav a.title p {
         transition: all .1s ease-in;
         display: inline-block;
         -webkit-appearance: none;
-        margin: .5em auto;
+        margin: .5em .5em;
         padding: .5em 1.25em;
         border-radius: .25em;
-        background: #eee;
-        color: #444;
+        background: #eee !important;
+        color: #444 !important;
         width: auto;
         font-weight: 700;
         border: none;
@@ -1296,10 +1296,10 @@ body>header nav a.title p {
     .button:visited:hover,
     input[type=submit].button:hover,
     input[type=submit]:hover {
-        color: #111;
-        background: #ccc;
-        border-color: #fff;
-        box-shadow: inset 1px 1px 3px #333
+        color: #111 !important;
+        background: #ccc !important;
+        border-color: #fff !important;
+        box-shadow: inset 1px 1px 3px #333 !important
     }
     .button.destructive,
     .button:visited.destructive,

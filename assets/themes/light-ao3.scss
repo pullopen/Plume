@@ -546,7 +546,7 @@ body>header nav#menu {
     transform: skewX(0);
     left: -1em;
     padding: 1.5em 1.5em 1.5em 2.5em;
-    background: #ddd;
+    background: #aaa;
     align-self: flex-start
 }
 body>header nav#menu a {
@@ -1230,7 +1230,7 @@ input[type=submit].button {
     transition: all .1s ease-in;
     display: inline-block;
     -webkit-appearance: none;
-    margin: .5em auto;
+    margin: .5em .5em;
     padding: .5em 1.25em;
     border-radius: .25em;
     background: #eee;

@@ -193,7 +193,7 @@ p.error {
     flex-direction: column;
     min-width: 20em;
     min-height: 20em;
-    margin: 1em;
+    margin: 1em 0em;
     box-sizing: border-box;
     background: #f7fbff;
     text-overflow: ellipsis;
@@ -472,7 +472,7 @@ figure video {
         max-width: 90vw
     }
     .card {
-        min-width: 80%;
+        min-width: 100%;
         min-height: 80%
     }
     .tabs {
@@ -1230,7 +1230,7 @@ input[type=submit].button {
     transition: all .1s ease-in;
     display: inline-block;
     -webkit-appearance: none;
-    margin: .5em auto;
+    margin: .5em .5em;
     padding: .75em 1em;
     background: #ffe4af;
     color: #fbf7ff;
@@ -1347,8 +1347,8 @@ form,
 section {
     background-color: #ffe4ad;
     border-radius: 8px;
-    padding: 1em 2em;
-    margin: 4em;
+    padding: 1em 1em;
+    margin: 0em;
     box-shadow: 0 5px 5px
 }
 a:hover {
