@@ -1,9 +1,9 @@
-@import url(feather.css);
-@import url(fonts/Route159/Route159.css);
-@import url(fonts/Lora/Lora.css);
-@import url(fonts/Playfair_Display/PlayfairDisplay.css);
-@import url(fonts/Vazir_WOL/Vazir_WOL.css);
-@import url(fonts/Shabnam_WOL/Shabnam_WOL.css);
+@import url(./default/feather.css);
+@import url(./default/fonts/Route159/Route159.css);
+@import url(./default/fonts/Lora/Lora.css);
+@import url(./default/fonts/Playfair_Display/PlayfairDisplay.css);
+@import url(./default/fonts/Vazir_WOL/Vazir_WOL.css);
+@import url(./default/fonts/Shabnam_WOL/Shabnam_WOL.css);
 html {
     box-sizing: border-box
 }
@@ -193,7 +193,7 @@ p.error {
     flex-direction: column;
     min-width: 20em;
     min-height: 20em;
-    margin: 1em 0em;
+    margin: 1em .1em;
     box-sizing: border-box;
     background: #f7fbff;
     text-overflow: ellipsis;
@@ -849,7 +849,7 @@ main .article-meta>.banner {
     margin: 3em 0
 }
 main .article-meta>.banner>* {
-    margin: 0 20%
+    margin: 0 0%
 }
 main .article-meta>p {
     margin: 2em 20%;
@@ -961,7 +961,7 @@ main .article-meta .reshares .action.reshared:hover svg.feather {
     background: rgba(119, 101, 227, .25) color: #7765e3
 }
 main .article-meta .comments {
-    margin: 0 20%;
+    margin: 0 0%;
     background-color: #ffe4af;
     padding: 1em;
     -webkit-border-radius: 8px;
@@ -1001,7 +1001,7 @@ main .article-meta .comments .comment {
     border: none
 }
 main .article-meta .comments .comment .content {
-    background: #f3f3f3;
+    background: #fff2d8;
     margin-top: 2.5em;
     padding: 1em;
     border-radius: 8px
@@ -1136,7 +1136,7 @@ input:checked~.cw-container>.cw-text {
 }
 .bottom-bar {
     z-index: 10;
-    position: fixed;
+    position: initial;
     bottom: 0;
     left: 0;
     right: 0;

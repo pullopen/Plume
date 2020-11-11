@@ -1,9 +1,9 @@
-@import "feather.css";
-@import "fonts/Route159/Route159.css";
-@import "fonts/Lora/Lora.css";
-@import "fonts/Playfair_Display/PlayfairDisplay.css";
-@import "fonts/Vazir_WOL/Vazir_WOL.css";
-@import "fonts/Shabnam_WOL/Shabnam_WOL.css";
+@import "./default/feather.css";
+@import "./default/fonts/Route159/Route159.css";
+@import "./default/fonts/Lora/Lora.css";
+@import "./default/fonts/Playfair_Display/PlayfairDisplay.css";
+@import "./default/fonts/Vazir_WOL/Vazir_WOL.css";
+@import "./default/fonts/Shabnam_WOL/Shabnam_WOL.css";
 html {
  box-sizing:border-box
 }
@@ -1132,7 +1132,7 @@ input:checked~.cw-container>.cw-text {
 }
 .bottom-bar {
  z-index:10;
- position:fixed;
+ position:initial;
  bottom:0;
  left:0;
  right:0;

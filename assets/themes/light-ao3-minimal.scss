@@ -1,9 +1,9 @@
-@import url(feather.css);
-@import url(fonts/Route159/Route159.css);
-@import url(fonts/Lora/Lora.css);
-@import url(fonts/Playfair_Display/PlayfairDisplay.css);
-@import url(fonts/Vazir_WOL/Vazir_WOL.css);
-@import url(fonts/Shabnam_WOL/Shabnam_WOL.css);
+@import url(./default/feather.css);
+@import url(./default/fonts/Route159/Route159.css);
+@import url(./default/fonts/Lora/Lora.css);
+@import url(./default/fonts/Playfair_Display/PlayfairDisplay.css);
+@import url(./default/fonts/Vazir_WOL/Vazir_WOL.css);
+@import url(./default/fonts/Shabnam_WOL/Shabnam_WOL.css);
 html {
     box-sizing: border-box
 }
@@ -539,7 +539,7 @@ body>header nav#menu {
     transform: skewX(0);
     left: -1em;
     padding: 1.5em 1.5em 1.5em 2.5em;
-    background: #aaa;
+    background: #900;
     align-self: flex-start
 }
 body>header nav#menu a {
@@ -1137,7 +1137,7 @@ input:checked~.cw-container>.cw-text {
 }
 .bottom-bar {
     z-index: 10;
-    position: fixed;
+    position: initial;
     bottom: 0;
     left: 0;
     right: 0;
