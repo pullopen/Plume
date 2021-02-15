@@ -10,6 +10,7 @@
 - More translation languages (#862)
 - Proxy support (#829)
 - Riker a actor system library (#870)
+- (request-target) and Host header in HTTP Signature (#872)
 
 ### Changed
 
@@ -22,7 +23,7 @@
 ### Fixed
 
 - Percent-encode URI for remote_interact (#866, #857)
-- Menu animation not opening on iOS (#876)
+- Menu animation not opening on iOS (#876, #897)
 
 ## [[0.6.0]] - 2020-12-29
 

@@ -1,6 +1,6 @@
 use activitypub::{Activity, Link, Object};
 use array_tool::vec::Uniq;
-use reqwest::r#async::ClientBuilder;
+use reqwest::{header::HeaderValue, r#async::ClientBuilder, Url};
 use rocket::{
     http::Status,
     request::{FromRequest, Request},
@@ -132,35 +132,54 @@ where
 
     let mut rt = tokio::runtime::current_thread::Runtime::new()
         .expect("Error while initializing tokio runtime for federation");
-    let client = if let Some(proxy) = proxy {
-        ClientBuilder::new().proxy(proxy)
-    } else {
-        ClientBuilder::new()
-    }
-    .connect_timeout(std::time::Duration::from_secs(5))
-    .build()
-    .expect("Can't build client");
     for inbox in boxes {
         let body = signed.to_string();
         let mut headers = request::headers();
+        let url = Url::parse(&inbox);
+        if url.is_err() {
+            warn!("Inbox is invalid URL: {:?}", &inbox);
+            continue;
+        }
+        let url = url.unwrap();
+        if !url.has_host() {
+            warn!("Inbox doesn't have host: {:?}", &inbox);
+            continue;
+        };
+        let host_header_value = HeaderValue::from_str(&url.host_str().expect("Unreachable"));
+        if host_header_value.is_err() {
+            warn!("Header value is invalid: {:?}", url.host_str());
+            continue;
+        }
+        headers.insert("Host", host_header_value.unwrap());
         headers.insert("Digest", request::Digest::digest(&body));
         rt.spawn(
-            client
-                .post(&inbox)
-                .headers(headers.clone())
-                .header(
-                    "Signature",
-                    request::signature(sender, &headers)
-                        .expect("activity_pub::broadcast: request signature error"),
-                )
-                .body(body)
-                .send()
-                .and_then(|r| r.into_body().concat2())
-                .map(move |response| {
-                    debug!("Successfully sent activity to inbox ({})", inbox);
-                    debug!("Response: \"{:?}\"\n", response)
-                })
-                .map_err(|e| warn!("Error while sending to inbox ({:?})", e)),
+            if let Some(proxy) = proxy.clone() {
+                ClientBuilder::new().proxy(proxy)
+            } else {
+                ClientBuilder::new()
+            }
+            .connect_timeout(std::time::Duration::from_secs(5))
+            .build()
+            .expect("Can't build client")
+            .post(&inbox)
+            .headers(headers.clone())
+            .header(
+                "Signature",
+                request::signature(sender, &headers, ("post", url.path(), url.query()))
+                    .expect("activity_pub::broadcast: request signature error"),
+            )
+            .body(body)
+            .send()
+            .and_then(move |r| {
+                if r.status().is_success() {
+                    debug!("Successfully sent activity to inbox ({})", &inbox);
+                } else {
+                    warn!("Error while sending to inbox ({:?})", &r)
+                }
+                r.into_body().concat2()
+            })
+            .map(move |response| debug!("Response: \"{:?}\"\n", response))
+            .map_err(|e| warn!("Error while sending to inbox ({:?})", e)),
         );
     }
     rt.run().unwrap();
