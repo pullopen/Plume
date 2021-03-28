@@ -10,9 +10,16 @@ use plume_common::{
     activity_pub::{inbox::FromId, Id},
     utils::MediaProcessor,
 };
-use std::{fs, path::Path};
+use std::{
+    fs::{self, DirBuilder},
+    path::{self, Path, PathBuf},
+};
+use tracing::warn;
+use url::Url;
 
-#[derive(Clone, Identifiable, Queryable)]
+const REMOTE_MEDIA_DIRECTORY: &str = "remote";
+
+#[derive(Clone, Identifiable, Queryable, AsChangeset)]
 pub struct Media {
     pub id: i32,
     pub file_path: String,
@@ -58,6 +65,7 @@ impl MediaCategory {
 impl Media {
     insert!(medias, NewMedia);
     get!(medias);
+    find_by!(medias, find_by_file_path, file_path as &str);
 
     pub fn for_user(conn: &Connection, owner: i32) -> Result<Vec<Media>> {
         medias::table
@@ -148,12 +156,11 @@ impl Media {
         if self.is_remote {
             Ok(self.remote_url.clone().unwrap_or_default())
         } else {
-            let p = Path::new(&self.file_path);
-            let filename: String = p.file_name().unwrap().to_str().unwrap().to_owned();
+            let file_path = self.file_path.replace(path::MAIN_SEPARATOR, "/");
             Ok(ap_url(&format!(
-                "{}/static/media/{}",
+                "{}/{}",
                 Instance::get_local()?.public_domain,
-                &filename
+                &file_path
             )))
         }
     }
@@ -198,18 +205,14 @@ impl Media {
     // TODO: merge with save_remote?
     pub fn from_activity(conn: &DbConn, image: &Image) -> Result<Media> {
         let remote_url = image.object_props.url_string().ok()?;
-        let ext = remote_url
-            .rsplit('.')
-            .next()
-            .map(ToOwned::to_owned)
-            .unwrap_or_else(|| String::from("png"));
-        let path = Path::new(&super::CONFIG.media_directory).join(format!(
-            "{}.{}",
-            GUID::rand().to_string(),
-            ext
-        ));
+        let path = determine_mirror_file_path(&remote_url);
+        let parent = path.parent()?;
+        if !parent.is_dir() {
+            DirBuilder::new().recursive(true).create(parent)?;
+        }
 
         let mut dest = fs::File::create(path.clone()).ok()?;
+        // TODO: conditional GET
         if let Some(proxy) = CONFIG.proxy() {
             reqwest::ClientBuilder::new().proxy(proxy.clone()).build()?
         } else {
@@ -221,31 +224,65 @@ impl Media {
         .copy_to(&mut dest)
         .ok()?;
 
-        Media::insert(
-            conn,
-            NewMedia {
-                file_path: path.to_str()?.to_string(),
-                alt_text: image.object_props.content_string().ok()?,
-                is_remote: false,
-                remote_url: None,
-                sensitive: image.object_props.summary_string().is_ok(),
-                content_warning: image.object_props.summary_string().ok(),
-                owner_id: User::from_id(
+        Media::find_by_file_path(conn, &path.to_str()?)
+            .and_then(|mut media| {
+                let mut updated = false;
+
+                let alt_text = image.object_props.content_string().ok()?;
+                let sensitive = image.object_props.summary_string().is_ok();
+                let content_warning = image.object_props.summary_string().ok();
+                if media.alt_text != alt_text {
+                    media.alt_text = alt_text;
+                    updated = true;
+                }
+                if media.is_remote {
+                    media.is_remote = false;
+                    updated = true;
+                }
+                if media.remote_url.is_some() {
+                    media.remote_url = None;
+                    updated = true;
+                }
+                if media.sensitive != sensitive {
+                    media.sensitive = sensitive;
+                    updated = true;
+                }
+                if media.content_warning != content_warning {
+                    media.content_warning = content_warning;
+                    updated = true;
+                }
+                if updated {
+                    diesel::update(&media).set(&media).execute(&**conn)?;
+                }
+                Ok(media)
+            })
+            .or_else(|_| {
+                Media::insert(
                     conn,
-                    image
-                        .object_props
-                        .attributed_to_link_vec::<Id>()
-                        .ok()?
-                        .into_iter()
-                        .next()?
-                        .as_ref(),
-                    None,
-                    CONFIG.proxy(),
+                    NewMedia {
+                        file_path: path.to_str()?.to_string(),
+                        alt_text: image.object_props.content_string().ok()?,
+                        is_remote: false,
+                        remote_url: None,
+                        sensitive: image.object_props.summary_string().is_ok(),
+                        content_warning: image.object_props.summary_string().ok(),
+                        owner_id: User::from_id(
+                            conn,
+                            image
+                                .object_props
+                                .attributed_to_link_vec::<Id>()
+                                .ok()?
+                                .into_iter()
+                                .next()?
+                                .as_ref(),
+                            None,
+                            CONFIG.proxy(),
+                        )
+                        .map_err(|(_, e)| e)?
+                        .id,
+                    },
                 )
-                .map_err(|(_, e)| e)?
-                .id,
-            },
-        )
+            })
     }
 
     pub fn get_media_processor<'a>(conn: &'a Connection, user: Vec<&User>) -> MediaProcessor<'a> {
@@ -260,6 +297,33 @@ impl Media {
             }
         })
     }
+}
+
+fn determine_mirror_file_path(url: &str) -> PathBuf {
+    let mut file_path = Path::new(&super::CONFIG.media_directory).join(REMOTE_MEDIA_DIRECTORY);
+    Url::parse(url)
+        .map(|url| {
+            if !url.has_host() {
+                return;
+            }
+            file_path.push(url.host_str().unwrap());
+            for segment in url.path_segments().expect("FIXME") {
+                file_path.push(segment);
+            }
+            // TODO: handle query
+            // HINT: Use characters which must be percent-encoded in path as separator between path and query
+            // HINT: handle extension
+        })
+        .unwrap_or_else(|err| {
+            warn!("Failed to parse url: {} {}", &url, err);
+            let ext = url
+                .rsplit('.')
+                .next()
+                .map(ToOwned::to_owned)
+                .unwrap_or_else(|| String::from("png"));
+            file_path.push(format!("{}.{}", GUID::rand().to_string(), ext));
+        });
+    file_path
 }
 
 #[cfg(test)]
