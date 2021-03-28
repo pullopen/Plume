@@ -20,7 +20,7 @@ impl From<TokenizerKind> for TextAnalyzer {
             Simple => TextAnalyzer::from(SimpleTokenizer)
                 .filter(RemoveLongFilter::limit(40))
                 .filter(LowerCaser),
-            Ngram => TextAnalyzer::from(NgramTokenizer::new(2, 8, false)).filter(LowerCaser),
+            Ngram => TextAnalyzer::from(NgramTokenizer::new(2, 16, false)).filter(LowerCaser),
             Whitespace => TextAnalyzer::from(WhitespaceTokenizer).filter(LowerCaser),
             #[cfg(feature = "search-lindera")]
             Lindera => {
