@@ -19,6 +19,7 @@
 - Update Rust version to nightly-2021-01-15 (#878)
 - Upgrade Tantivy to 0.13.3 and lindera-tantivy to 0.7.1 (#878)
 - Run searcher on actor system (#870)
+- Use article title as its slug instead of capitalizing and inserting hyphens (#920)
 
 ### Fixed
 
@@ -26,6 +27,9 @@
 - Menu animation not opening on iOS (#876, #897)
 - Make actors subscribe to channel once (#913)
 - Upsert posts and media instead of trying to insert and fail (#912)
+- Update post's ActivityPub id when published by update (#915)
+- Calculate media URI properly even when MEDIA_UPLOAD_DIRECTORY configured (#916)
+- Prevent duplicated posts in 'all' timeline (#917)
 
 ## [[0.6.0]] - 2020-12-29
 
