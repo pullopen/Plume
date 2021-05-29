@@ -11,6 +11,7 @@ use activitypub::{
 };
 use chrono::{NaiveDateTime, TimeZone, Utc};
 use diesel::{self, BelongingToDsl, ExpressionMethods, QueryDsl, RunQueryDsl, SaveChangesDsl};
+use heck::KebabCase;
 use once_cell::sync::Lazy;
 use plume_common::{
     activity_pub::{
@@ -250,11 +251,6 @@ impl Post {
 
     pub fn ap_url(blog: Blog, slug: &str) -> String {
         ap_url(&format!("{}/~/{}/{}/", CONFIG.base_url, blog.fqn, slug))
-    }
-
-    // It's better to calc slug in insert and update
-    pub fn slug(title: &str) -> &str {
-        title
     }
 
     pub fn get_authors(&self, conn: &Connection) -> Result<Vec<User>> {
@@ -652,12 +648,12 @@ impl FromId<DbConn> for Post {
             .and_then(|mut post| {
                 let mut updated = false;
 
-                let slug = Self::slug(&title);
+                let slug = title.to_kebab_case();
                 let content = SafeString::new(&article.object_props.content_string()?);
                 let subtitle = article.object_props.summary_string()?;
                 let source = article.ap_object_props.source_object::<Source>()?.content;
                 if post.slug != slug {
-                    post.slug = slug.to_string();
+                    post.slug = slug;
                     updated = true;
                 }
                 if post.title != title {
@@ -696,7 +692,7 @@ impl FromId<DbConn> for Post {
                     conn,
                     NewPost {
                         blog_id: blog?.id,
-                        slug: Self::slug(&title).to_string(),
+                        slug: title.to_kebab_case(),
                         title,
                         content: SafeString::new(&article.object_props.content_string()?),
                         published: true,
@@ -841,7 +837,7 @@ impl AsObject<User, Update, &DbConn> for PostUpdate {
         }
 
         if let Some(title) = self.title {
-            post.slug = Post::slug(&title).to_string();
+            post.slug = title.to_kebab_case();
             post.title = title;
         }
 
