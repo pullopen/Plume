@@ -795,3 +795,9 @@ main .article-meta .comments a.button::before, main .article-meta .comments form
     border-top: 1px solid black;
 }
 
+/*增加导语*/
+label[for=username]:after {
+  content: '请使用英文字母和数字组合 (Please use Latin alphabet or numbers)';
+  color:#F00;
+  font-weight: bold;
+}

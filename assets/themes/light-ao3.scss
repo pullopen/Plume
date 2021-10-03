@@ -1375,3 +1375,10 @@ code {
     box-shadow: inset 1px 1px 3px #333;
     text-decoration: none
 }
+
+/*增加导语*/
+label[for=username]:after {
+    content: '请使用英文字母和数字组合 (Please use Latin alphabet or numbers)';
+    color:#F00;
+    font-weight: bold;
+  }
