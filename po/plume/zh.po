@@ -433,7 +433,7 @@ msgid "Create your account"
 msgstr "创建你的帐号"
 
 msgid "Create an account"
-msgstr "创建帐号（用户名请使用英文字母或数字组合）"
+msgstr "创建帐号"
 
 msgid "Username"
 msgstr "用户名"
