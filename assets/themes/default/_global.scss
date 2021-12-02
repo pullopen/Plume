@@ -236,7 +236,9 @@ p.error {
     font-family: $playfair;
     font-size: 1.75em;
     font-weight: normal;
-    line-height: 1.75;
+    line-height: 1.10;
+    display: block;
+    position: relative;
     a {
       display: block;
       transition: color 0.1s ease-in;
@@ -247,7 +249,7 @@ p.error {
   }
 
   .controls {
-    float: right;
+    text-align: end;
 
     .button {
       margin-top: 0;
@@ -261,7 +263,7 @@ p.error {
     font-family: $lora;
     font-size: 1em;
     line-height: 1.25;
-    text-align: left;
+    text-align: initial;
     overflow: hidden;
   }
 }
