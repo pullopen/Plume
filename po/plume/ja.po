@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: plume\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-15 16:33-0700\n"
-"PO-Revision-Date: 2021-05-05 18:31\n"
+"PO-Revision-Date: 2022-01-12 01:28\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
@@ -18,86 +18,90 @@ msgstr ""
 "X-Crowdin-File-ID: 8\n"
 
 # src/template_utils.rs:105
+msgid "Someone"
+msgstr ""
+
+# src/template_utils.rs:107
 msgid "{0} commented on your article."
 msgstr "{0} さんがあなたの投稿にコメントしました。"
 
-# src/template_utils.rs:106
+# src/template_utils.rs:108
 msgid "{0} is subscribed to you."
 msgstr "{0} さんがあなたをフォローしました。"
 
-# src/template_utils.rs:107
+# src/template_utils.rs:109
 msgid "{0} liked your article."
 msgstr "{0} さんがあなたの投稿にいいねしました。"
 
-# src/template_utils.rs:108
+# src/template_utils.rs:110
 msgid "{0} mentioned you."
 msgstr "{0} さんがあなたをメンションしました。"
 
-# src/template_utils.rs:109
+# src/template_utils.rs:111
 msgid "{0} boosted your article."
 msgstr "{0} さんがあなたの投稿をブーストしました。"
 
-# src/template_utils.rs:116
+# src/template_utils.rs:118
 msgid "Your feed"
 msgstr "自分のフィード"
 
-# src/template_utils.rs:117
+# src/template_utils.rs:119
 msgid "Local feed"
 msgstr "このインスタンスのフィード"
 
-# src/template_utils.rs:118
+# src/template_utils.rs:120
 msgid "Federated feed"
 msgstr "全インスタンスのフィード"
 
-# src/template_utils.rs:154
+# src/template_utils.rs:156
 msgid "{0}'s avatar"
 msgstr "{0} さんのアバター"
 
-# src/template_utils.rs:198
+# src/template_utils.rs:200
 msgid "Previous page"
 msgstr "前のページ"
 
-# src/template_utils.rs:209
+# src/template_utils.rs:211
 msgid "Next page"
 msgstr "次のページ"
 
-# src/template_utils.rs:363
+# src/template_utils.rs:365
 msgid "Optional"
 msgstr "省略可"
 
-# src/routes/blogs.rs:67
+# src/routes/blogs.rs:68
 msgid "To create a new blog, you need to be logged in"
 msgstr "新しいブログを作成するにはログインが必要です"
 
-# src/routes/blogs.rs:109
+# src/routes/blogs.rs:110
 msgid "A blog with the same name already exists."
 msgstr "同じ名前のブログがすでに存在しています。"
 
-# src/routes/blogs.rs:147
+# src/routes/blogs.rs:148
 msgid "Your blog was successfully created!"
 msgstr "ブログは正常に作成されました。"
 
-# src/routes/blogs.rs:165
+# src/routes/blogs.rs:166
 msgid "Your blog was deleted."
 msgstr "ブログを削除しました。"
 
-# src/routes/blogs.rs:173
+# src/routes/blogs.rs:174
 msgid "You are not allowed to delete this blog."
 msgstr "このブログを削除する権限がありません。"
 
-# src/routes/blogs.rs:223
+# src/routes/blogs.rs:224
 msgid "You are not allowed to edit this blog."
 msgstr "このブログを編集する権限がありません。"
 
-# src/routes/blogs.rs:279
+# src/routes/blogs.rs:280
 msgid "You can't use this media as a blog icon."
 msgstr "このメディアはブログアイコンに使用できません。"
 
-# src/routes/blogs.rs:297
+# src/routes/blogs.rs:298
 msgid "You can't use this media as a blog banner."
 msgstr "このメディアはブログバナーに使用できません。"
 
-# src/routes/blogs.rs:331
+# src/routes/blogs.rs:332
 msgid "Your blog information have been updated."
 msgstr "ブログ情報を更新しました。"
 
@@ -108,6 +112,22 @@ msgstr "コメントを投稿しました。"
 # src/routes/comments.rs:177
 msgid "Your comment has been deleted."
 msgstr "コメントを削除しました。"
+
+# src/routes/email_signups.rs:82
+msgid "Registrations are closed on this instance."
+msgstr "このインスタンスでは登録がクローズされています。"
+
+# src/routes/email_signups.rs:119
+msgid "User registration"
+msgstr "ユーザー登録"
+
+# src/routes/email_signups.rs:120
+msgid "Here is the link for registration: {0}"
+msgstr "こちらのリンクから、ユーザー登録できます: {0}"
+
+# src/routes/email_signups.rs:219
+msgid "Your account has been created. Now you just need to log in, before you can use it."
+msgstr "アカウントを作成しました。使用前に、ログインする必要があります。"
 
 # src/routes/instance.rs:117
 msgid "Instance settings have been saved."
@@ -127,7 +147,7 @@ msgstr "ブロックリストから削除しました"
 
 # src/routes/instance.rs:219
 msgid "Email already blocked"
-msgstr ""
+msgstr "メールは既にブロックされています"
 
 # src/routes/instance.rs:224
 msgid "Email Blocked"
@@ -149,19 +169,19 @@ msgstr "完了しました。"
 msgid "To like a post, you need to be logged in"
 msgstr "投稿をいいねするにはログインが必要です"
 
-# src/routes/medias.rs:158
+# src/routes/medias.rs:153
 msgid "Your media have been deleted."
 msgstr "メディアを削除しました。"
 
-# src/routes/medias.rs:163
+# src/routes/medias.rs:158
 msgid "You are not allowed to delete this media."
 msgstr "このメディアを削除する権限がありません。"
 
-# src/routes/medias.rs:180
+# src/routes/medias.rs:175
 msgid "Your avatar has been updated."
 msgstr "アバターを更新しました。"
 
-# src/routes/medias.rs:185
+# src/routes/medias.rs:180
 msgid "You are not allowed to use this media."
 msgstr "このメディアを使用する権限がありません。"
 
@@ -169,55 +189,55 @@ msgstr "このメディアを使用する権限がありません。"
 msgid "To see your notifications, you need to be logged in"
 msgstr "通知を表示するにはログインが必要です"
 
-# src/routes/posts.rs:55
+# src/routes/posts.rs:56
 msgid "This post isn't published yet."
 msgstr "この投稿はまだ公開されていません。"
 
-# src/routes/posts.rs:125
+# src/routes/posts.rs:126
 msgid "To write a new post, you need to be logged in"
 msgstr "新しい投稿を書くにはログインが必要です"
 
-# src/routes/posts.rs:146
+# src/routes/posts.rs:147
 msgid "You are not an author of this blog."
 msgstr "あなたはこのブログの投稿者ではありません。"
 
-# src/routes/posts.rs:153
+# src/routes/posts.rs:154
 msgid "New post"
 msgstr "新しい投稿"
 
-# src/routes/posts.rs:198
+# src/routes/posts.rs:199
 msgid "Edit {0}"
 msgstr "{0} を編集"
 
-# src/routes/posts.rs:267
+# src/routes/posts.rs:268
 msgid "You are not allowed to publish on this blog."
 msgstr "このブログで投稿を公開する権限がありません。"
 
-# src/routes/posts.rs:367
+# src/routes/posts.rs:368
 msgid "Your article has been updated."
 msgstr "投稿を更新しました。"
 
-# src/routes/posts.rs:556
+# src/routes/posts.rs:557
 msgid "Your article has been saved."
 msgstr "投稿を保存しました。"
 
-# src/routes/posts.rs:563
+# src/routes/posts.rs:564
 msgid "New article"
 msgstr "新しい投稿"
 
-# src/routes/posts.rs:601
+# src/routes/posts.rs:602
 msgid "You are not allowed to delete this article."
 msgstr "この投稿を削除する権限がありません。"
 
-# src/routes/posts.rs:625
+# src/routes/posts.rs:626
 msgid "Your article has been deleted."
 msgstr "投稿を削除しました。"
 
-# src/routes/posts.rs:630
+# src/routes/posts.rs:631
 msgid "It looks like the article you tried to delete doesn't exist. Maybe it is already gone?"
 msgstr "削除しようとしている投稿は存在しないようです。すでに削除していませんか？"
 
-# src/routes/posts.rs:672
+# src/routes/posts.rs:673
 msgid "Couldn't obtain enough information about your account. Please make sure your username is correct."
 msgstr "お使いのアカウントに関する十分な情報を取得できませんでした。ご自身のユーザー名が正しいことを確認してください。"
 
@@ -245,45 +265,70 @@ msgstr "こちらのリンクから、パスワードをリセットできます
 msgid "Your password was successfully reset."
 msgstr "パスワードが正常にリセットされました。"
 
-# src/routes/user.rs:74
+# src/routes/user.rs:87
 msgid "To access your dashboard, you need to be logged in"
 msgstr "ダッシュボードにアクセスするにはログインが必要です"
 
-# src/routes/user.rs:96
+# src/routes/user.rs:109
 msgid "You are no longer following {}."
 msgstr "{} のフォローを解除しました。"
 
-# src/routes/user.rs:113
+# src/routes/user.rs:126
 msgid "You are now following {}."
 msgstr "{} をフォローしました。"
 
-# src/routes/user.rs:190
+# src/routes/user.rs:203
 msgid "To subscribe to someone, you need to be logged in"
 msgstr "誰かをフォローするにはログインが必要です"
 
-# src/routes/user.rs:299
+# src/routes/user.rs:323
 msgid "To edit your profile, you need to be logged in"
 msgstr "プロフィールを編集するにはログインが必要です"
 
-# src/routes/user.rs:345
+# src/routes/user.rs:369
 msgid "Your profile has been updated."
 msgstr "プロフィールを更新しました。"
 
-# src/routes/user.rs:373
+# src/routes/user.rs:397
 msgid "Your account has been deleted."
 msgstr "アカウントを削除しました。"
 
-# src/routes/user.rs:379
+# src/routes/user.rs:403
 msgid "You can't delete someone else's account."
 msgstr "他人のアカウントは削除できません。"
 
-# src/routes/user.rs:463
-msgid "Registrations are closed on this instance."
-msgstr "登録はこのインスタンス内に限定されています。"
+msgid "Create your account"
+msgstr "アカウントを作成"
 
-# src/routes/user.rs:486
-msgid "Your account has been created. Now you just need to log in, before you can use it."
-msgstr "アカウントを作成しました。使用前に、ログインする必要があります。"
+msgid "Create an account"
+msgstr "アカウントを作成"
+
+msgid "Email"
+msgstr "メールアドレス"
+
+msgid "Email confirmation"
+msgstr "メール確認"
+
+msgid "Apologies, but registrations are closed on this particular instance. You can, however, find a different one."
+msgstr "申し訳ありませんが、このインスタンスでの登録は限定されています。ですが、他のインスタンスを見つけることはできます。"
+
+msgid "Registration"
+msgstr "ユーザー登録"
+
+msgid "Check your inbox!"
+msgstr "受信トレイを確認してください！"
+
+msgid "We sent a mail to the address you gave us, with a link for registration."
+msgstr "指定された宛先に、ユーザー登録するためのリンクを記載したメールを送信しました。"
+
+msgid "Username"
+msgstr "ユーザー名"
+
+msgid "Password"
+msgstr "パスワード"
+
+msgid "Password confirmation"
+msgstr "パスワードの確認"
 
 msgid "Media upload"
 msgstr "メディアのアップロード"
@@ -422,27 +467,6 @@ msgstr "フォロワー"
 
 msgid "Subscriptions"
 msgstr "フォロー"
-
-msgid "Create your account"
-msgstr "アカウントを作成"
-
-msgid "Create an account"
-msgstr "アカウントを作成"
-
-msgid "Username"
-msgstr "ユーザー名"
-
-msgid "Email"
-msgstr "メールアドレス"
-
-msgid "Password"
-msgstr "パスワード"
-
-msgid "Password confirmation"
-msgstr "パスワードの確認"
-
-msgid "Apologies, but registrations are closed on this particular instance. You can, however, find a different one."
-msgstr "申し訳ありませんが、このインスタンスでの登録は限定されています。ですが、他のインスタンスを見つけることはできます。"
 
 msgid "{0}'s subscriptions"
 msgstr "{0} がフォロー中のユーザー"
@@ -838,9 +862,6 @@ msgstr "確認"
 
 msgid "Update password"
 msgstr "パスワードを更新"
-
-msgid "Check your inbox!"
-msgstr "受信トレイを確認してください！"
 
 msgid "We sent a mail to the address you gave us, with a link to reset your password."
 msgstr "指定された宛先に、パスワードをリセットするためのリンクを記載したメールを送信しました。"

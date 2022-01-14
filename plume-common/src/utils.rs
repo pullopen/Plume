@@ -1,11 +1,8 @@
-use heck::CamelCase;
+use heck::ToUpperCamelCase;
 use openssl::rand::rand_bytes;
 use pulldown_cmark::{html, CodeBlockKind, CowStr, Event, LinkType, Options, Parser, Tag};
 use regex_syntax::is_word_character;
-use rocket::{
-    http::uri::Uri,
-    response::{Flash, Redirect},
-};
+use rocket::http::uri::Uri;
 use std::collections::HashSet;
 use syntect::html::{ClassStyle, ClassedHTMLGenerator};
 use syntect::parsing::SyntaxSet;
@@ -21,7 +18,7 @@ pub fn random_hex() -> String {
 
 /// Remove non alphanumeric characters and CamelCase a string
 pub fn make_actor_id(name: &str) -> String {
-    name.to_camel_case()
+    name.to_upper_camel_case()
         .chars()
         .filter(|c| c.is_alphanumeric())
         .collect()
@@ -78,19 +75,6 @@ pub fn iri_percent_encode_seg_char(c: char) -> String {
             }
         }
     }
-}
-
-/**
-* Redirects to the login page with a given message.
-*
-* Note that the message should be translated before passed to this function.
-*/
-pub fn requires_login<T: Into<Uri<'static>>>(message: &str, url: T) -> Flash<Redirect> {
-    Flash::new(
-        Redirect::to(format!("/login?m={}", Uri::percent_encode(message))),
-        "callback",
-        url.into().to_string(),
-    )
 }
 
 #[derive(Debug)]
@@ -464,6 +448,10 @@ pub fn md_to_html<'a>(
     let mut buf = String::new();
     html::push_html(&mut buf, parser);
     (buf, mentions.collect(), hashtags.collect())
+}
+
+pub fn escape(string: &str) -> askama_escape::Escaped<askama_escape::Html> {
+    askama_escape::escape(string, askama_escape::Html)
 }
 
 #[cfg(test)]

@@ -10,21 +10,34 @@ use std::{borrow::Cow, collections::HashMap};
 use validator::{Validate, ValidationError, ValidationErrors};
 
 use crate::inbox;
-use crate::routes::{errors::ErrorPage, Page, RemoteForm, RespondOrRedirect};
+use crate::routes::{
+    email_signups::EmailSignupForm, errors::ErrorPage, Page, RemoteForm, RespondOrRedirect,
+};
 use crate::template_utils::{IntoContext, Ructe};
+use crate::utils::requires_login;
 use plume_common::activity_pub::{broadcast, ActivityStream, ApRequest, Id};
-use plume_common::utils;
+use plume_common::utils::md_to_html;
 use plume_models::{
-    blogs::Blog, db_conn::DbConn, follows, headers::Headers, inbox::inbox as local_inbox,
-    instance::Instance, medias::Media, posts::Post, reshares::Reshare, safe_string::SafeString,
-    users::*, Error, PlumeRocket, CONFIG,
+    blogs::Blog,
+    db_conn::DbConn,
+    follows,
+    headers::Headers,
+    inbox::inbox as local_inbox,
+    instance::Instance,
+    medias::Media,
+    posts::Post,
+    reshares::Reshare,
+    safe_string::SafeString,
+    signups::{self, Strategy as SignupStrategy},
+    users::*,
+    Error, PlumeRocket, CONFIG,
 };
 
 #[get("/me")]
 pub fn me(user: Option<User>) -> RespondOrRedirect {
     match user {
         Some(user) => Redirect::to(uri!(details: name = user.username)).into(),
-        None => utils::requires_login("", uri!(me)).into(),
+        None => requires_login("", uri!(me)).into(),
     }
 }
 
@@ -69,7 +82,7 @@ pub fn dashboard(user: User, conn: DbConn, rockets: PlumeRocket) -> Result<Ructe
 
 #[get("/dashboard", rank = 2)]
 pub fn dashboard_auth(i18n: I18n) -> Flash<Redirect> {
-    utils::requires_login(
+    requires_login(
         &i18n!(
             i18n.catalog,
             "To access your dashboard, you need to be logged in"
@@ -185,7 +198,7 @@ pub fn follow_not_connected(
 
 #[get("/@/<name>/follow?local", rank = 2)]
 pub fn follow_auth(name: String, i18n: I18n) -> Flash<Redirect> {
-    utils::requires_login(
+    requires_login(
         &i18n!(
             i18n.catalog,
             "To subscribe to someone, you need to be logged in"
@@ -260,12 +273,23 @@ pub fn activity_details(
 
 #[get("/users/new")]
 pub fn new(conn: DbConn, rockets: PlumeRocket) -> Result<Ructe, ErrorPage> {
-    Ok(render!(users::new(
-        &(&conn, &rockets).to_context(),
-        Instance::get_local()?.open_registrations,
-        &NewUserForm::default(),
-        ValidationErrors::default()
-    )))
+    use SignupStrategy::*;
+
+    let rendered = match CONFIG.signup {
+        Password => render!(users::new(
+            &(&conn, &rockets).to_context(),
+            Instance::get_local()?.open_registrations,
+            &NewUserForm::default(),
+            ValidationErrors::default()
+        )),
+        Email => render!(email_signups::new(
+            &(&conn, &rockets).to_context(),
+            Instance::get_local()?.open_registrations,
+            &EmailSignupForm::default(),
+            ValidationErrors::default()
+        )),
+    };
+    Ok(rendered)
 }
 
 #[get("/@/<name>/edit")]
@@ -294,7 +318,7 @@ pub fn edit(
 
 #[get("/@/<name>/edit", rank = 2)]
 pub fn edit_auth(name: String, i18n: I18n) -> Flash<Redirect> {
-    utils::requires_login(
+    requires_login(
         &i18n!(
             i18n.catalog,
             "To edit your profile, you need to be logged in"
@@ -325,7 +349,7 @@ pub fn update(
     user.email = Some(form.email.clone());
     user.summary = form.summary.clone();
     user.summary_html = SafeString::new(
-        &utils::md_to_html(
+        &md_to_html(
             &form.summary,
             None,
             false,
@@ -386,12 +410,12 @@ pub fn delete(
 #[derive(Default, FromForm, Validate)]
 #[validate(schema(
     function = "passwords_match",
-    skip_on_field_errors = "false",
+    skip_on_field_errors = false,
     message = "Passwords are not matching"
 ))]
 pub struct NewUserForm {
     #[validate(
-        length(min = "1", message = "Username can't be empty"),
+        length(min = 1, message = "Username can't be empty"),
         custom(
             function = "validate_username",
             message = "User name is not allowed to contain any of < > & @ ' or \""
@@ -400,9 +424,9 @@ pub struct NewUserForm {
     pub username: String,
     #[validate(email(message = "Invalid email"))]
     pub email: String,
-    #[validate(length(min = "8", message = "Password should be at least 8 characters long"))]
+    #[validate(length(min = 8, message = "Password should be at least 8 characters long"))]
     pub password: String,
-    #[validate(length(min = "8", message = "Password should be at least 8 characters long"))]
+    #[validate(length(min = 8, message = "Password should be at least 8 characters long"))]
     pub password_confirmation: String,
 }
 
@@ -452,6 +476,7 @@ pub fn create(
     form: LenientForm<NewUserForm>,
     conn: DbConn,
     rockets: PlumeRocket,
+    _enabled: signups::Password,
 ) -> Result<Flash<Redirect>, Ructe> {
     if !Instance::get_local()
         .map(|i| i.open_registrations)

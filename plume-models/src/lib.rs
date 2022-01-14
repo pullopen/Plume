@@ -16,6 +16,8 @@ extern crate serde_json;
 #[macro_use]
 extern crate tantivy;
 
+pub use lettre;
+pub use lettre::smtp;
 use once_cell::sync::Lazy;
 use plume_common::activity_pub::{inbox::InboxError, request, sign};
 use posts::PostEvent;
@@ -65,6 +67,7 @@ pub enum Error {
     Url,
     Webfinger,
     Expired,
+    UserAlreadyExists,
 }
 
 impl From<bcrypt::BcryptError> for Error {
@@ -300,6 +303,33 @@ pub fn ap_url(url: &str) -> String {
     format!("https://{}", url)
 }
 
+pub trait SmtpNewWithAddr {
+    fn new_with_addr(
+        addr: (&str, u16),
+    ) -> std::result::Result<smtp::SmtpClient, smtp::error::Error>;
+}
+
+impl SmtpNewWithAddr for smtp::SmtpClient {
+    // Stolen from lettre::smtp::SmtpClient::new_simple()
+    fn new_with_addr(addr: (&str, u16)) -> std::result::Result<Self, smtp::error::Error> {
+        use native_tls::TlsConnector;
+        use smtp::{
+            client::net::{ClientTlsParameters, DEFAULT_TLS_PROTOCOLS},
+            ClientSecurity, SmtpClient,
+        };
+
+        let (domain, port) = addr;
+
+        let mut tls_builder = TlsConnector::builder();
+        tls_builder.min_protocol_version(Some(DEFAULT_TLS_PROTOCOLS[0]));
+
+        let tls_parameters =
+            ClientTlsParameters::new(domain.to_string(), tls_builder.build().unwrap());
+
+        SmtpClient::new((domain, port), ClientSecurity::Wrapper(tls_parameters))
+    }
+}
+
 #[cfg(test)]
 #[macro_use]
 mod tests {
@@ -347,6 +377,7 @@ pub mod blogs;
 pub mod comment_seers;
 pub mod comments;
 pub mod db_conn;
+pub mod email_signups;
 pub mod follows;
 pub mod headers;
 pub mod inbox;
@@ -367,6 +398,7 @@ pub mod safe_string;
 #[allow(unused_imports)]
 pub mod schema;
 pub mod search;
+pub mod signups;
 pub mod tags;
 pub mod timeline;
 pub mod users;

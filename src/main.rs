@@ -7,8 +7,6 @@ extern crate gettext_macros;
 extern crate rocket;
 #[macro_use]
 extern crate serde_json;
-#[macro_use]
-extern crate validator_derive;
 
 use clap::App;
 use diesel::r2d2::ConnectionManager;
@@ -35,6 +33,7 @@ init_i18n!(
 mod api;
 mod inbox;
 mod mail;
+mod utils;
 #[macro_use]
 mod template_utils;
 mod routes;
@@ -149,6 +148,10 @@ Then try to restart Plume.
                 routes::comments::create,
                 routes::comments::delete,
                 routes::comments::activity_pub,
+                routes::email_signups::create,
+                routes::email_signups::created,
+                routes::email_signups::show,
+                routes::email_signups::signup,
                 routes::instance::index,
                 routes::instance::admin,
                 routes::instance::admin_mod,

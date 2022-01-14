@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: plume\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-15 16:33-0700\n"
-"PO-Revision-Date: 2022-01-02 11:39\n"
+"PO-Revision-Date: 2022-01-12 01:28\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -18,86 +18,90 @@ msgstr ""
 "X-Crowdin-File-ID: 8\n"
 
 # src/template_utils.rs:105
+msgid "Someone"
+msgstr ""
+
+# src/template_utils.rs:107
 msgid "{0} commented on your article."
 msgstr "{0} ha comentado tu artículo."
 
-# src/template_utils.rs:106
+# src/template_utils.rs:108
 msgid "{0} is subscribed to you."
 msgstr "{0} esta suscrito a tí."
 
-# src/template_utils.rs:107
+# src/template_utils.rs:109
 msgid "{0} liked your article."
 msgstr "A {0} le gustó tu artículo."
 
-# src/template_utils.rs:108
+# src/template_utils.rs:110
 msgid "{0} mentioned you."
 msgstr "{0} te ha mencionado."
 
-# src/template_utils.rs:109
+# src/template_utils.rs:111
 msgid "{0} boosted your article."
 msgstr "{0} compartió su artículo."
 
-# src/template_utils.rs:116
+# src/template_utils.rs:118
 msgid "Your feed"
 msgstr "Tu Feed"
 
-# src/template_utils.rs:117
+# src/template_utils.rs:119
 msgid "Local feed"
 msgstr "Feed local"
 
-# src/template_utils.rs:118
+# src/template_utils.rs:120
 msgid "Federated feed"
 msgstr "Feed federada"
 
-# src/template_utils.rs:154
+# src/template_utils.rs:156
 msgid "{0}'s avatar"
 msgstr "Avatar de {0}"
 
-# src/template_utils.rs:198
+# src/template_utils.rs:200
 msgid "Previous page"
 msgstr "Página anterior"
 
-# src/template_utils.rs:209
+# src/template_utils.rs:211
 msgid "Next page"
 msgstr "Página siguiente"
 
-# src/template_utils.rs:363
+# src/template_utils.rs:365
 msgid "Optional"
 msgstr "Opcional"
 
-# src/routes/blogs.rs:67
+# src/routes/blogs.rs:68
 msgid "To create a new blog, you need to be logged in"
 msgstr "Para crear un nuevo blog, necesitas estar conectado"
 
-# src/routes/blogs.rs:109
+# src/routes/blogs.rs:110
 msgid "A blog with the same name already exists."
 msgstr "Ya existe un blog con el mismo nombre."
 
-# src/routes/blogs.rs:147
+# src/routes/blogs.rs:148
 msgid "Your blog was successfully created!"
 msgstr "¡Tu blog se ha creado satisfactoriamente!"
 
-# src/routes/blogs.rs:165
+# src/routes/blogs.rs:166
 msgid "Your blog was deleted."
 msgstr "Tu blog fue eliminado."
 
-# src/routes/blogs.rs:173
+# src/routes/blogs.rs:174
 msgid "You are not allowed to delete this blog."
 msgstr "No está autorizado a eliminar este registro."
 
-# src/routes/blogs.rs:223
+# src/routes/blogs.rs:224
 msgid "You are not allowed to edit this blog."
 msgstr "No tiene permiso para editar este blog."
 
-# src/routes/blogs.rs:279
+# src/routes/blogs.rs:280
 msgid "You can't use this media as a blog icon."
 msgstr "No puede usar este medio como icono del blog."
 
-# src/routes/blogs.rs:297
+# src/routes/blogs.rs:298
 msgid "You can't use this media as a blog banner."
 msgstr "No puede usar este medio como bandera del blog."
 
-# src/routes/blogs.rs:331
+# src/routes/blogs.rs:332
 msgid "Your blog information have been updated."
 msgstr "La información de tu blog ha sido actualizada."
 
@@ -108,6 +112,22 @@ msgstr "Se ha publicado el comentario."
 # src/routes/comments.rs:177
 msgid "Your comment has been deleted."
 msgstr "Se ha eliminado el comentario."
+
+# src/routes/email_signups.rs:82
+msgid "Registrations are closed on this instance."
+msgstr "Los registros están cerrados en esta instancia."
+
+# src/routes/email_signups.rs:119
+msgid "User registration"
+msgstr ""
+
+# src/routes/email_signups.rs:120
+msgid "Here is the link for registration: {0}"
+msgstr ""
+
+# src/routes/email_signups.rs:219
+msgid "Your account has been created. Now you just need to log in, before you can use it."
+msgstr "Tu cuenta ha sido creada. Ahora solo necesitas iniciar sesión, antes de poder usarla."
 
 # src/routes/instance.rs:117
 msgid "Instance settings have been saved."
@@ -149,19 +169,19 @@ msgstr "Hecho."
 msgid "To like a post, you need to be logged in"
 msgstr "Para darle un Me Gusta a un artículo, necesita estar conectado"
 
-# src/routes/medias.rs:158
+# src/routes/medias.rs:153
 msgid "Your media have been deleted."
 msgstr "Tus medios han sido eliminados."
 
-# src/routes/medias.rs:163
+# src/routes/medias.rs:158
 msgid "You are not allowed to delete this media."
 msgstr "No tienes permisos para eliminar este medio."
 
-# src/routes/medias.rs:180
+# src/routes/medias.rs:175
 msgid "Your avatar has been updated."
 msgstr "Tu avatar ha sido actualizado."
 
-# src/routes/medias.rs:185
+# src/routes/medias.rs:180
 msgid "You are not allowed to use this media."
 msgstr "No tienes permisos para usar este medio."
 
@@ -169,55 +189,55 @@ msgstr "No tienes permisos para usar este medio."
 msgid "To see your notifications, you need to be logged in"
 msgstr "Para ver tus notificaciones, necesitas estar conectado"
 
-# src/routes/posts.rs:55
+# src/routes/posts.rs:56
 msgid "This post isn't published yet."
 msgstr "Esta publicación aún no está publicada."
 
-# src/routes/posts.rs:125
+# src/routes/posts.rs:126
 msgid "To write a new post, you need to be logged in"
 msgstr "Para escribir un nuevo artículo, necesitas estar conectado"
 
-# src/routes/posts.rs:146
+# src/routes/posts.rs:147
 msgid "You are not an author of this blog."
 msgstr "No eres un autor de este blog."
 
-# src/routes/posts.rs:153
+# src/routes/posts.rs:154
 msgid "New post"
 msgstr "Nueva publicación"
 
-# src/routes/posts.rs:198
+# src/routes/posts.rs:199
 msgid "Edit {0}"
 msgstr "Editar {0}"
 
-# src/routes/posts.rs:267
+# src/routes/posts.rs:268
 msgid "You are not allowed to publish on this blog."
 msgstr "No tienes permiso para publicar en este blog."
 
-# src/routes/posts.rs:367
+# src/routes/posts.rs:368
 msgid "Your article has been updated."
 msgstr "Se ha actualizado el artículo."
 
-# src/routes/posts.rs:556
+# src/routes/posts.rs:557
 msgid "Your article has been saved."
 msgstr "Se ha guardado el artículo."
 
-# src/routes/posts.rs:563
+# src/routes/posts.rs:564
 msgid "New article"
 msgstr "Nueva publicación"
 
-# src/routes/posts.rs:601
+# src/routes/posts.rs:602
 msgid "You are not allowed to delete this article."
 msgstr "No tienes permiso para eliminar este artículo."
 
-# src/routes/posts.rs:625
+# src/routes/posts.rs:626
 msgid "Your article has been deleted."
 msgstr "Se ha eliminado el artículo."
 
-# src/routes/posts.rs:630
+# src/routes/posts.rs:631
 msgid "It looks like the article you tried to delete doesn't exist. Maybe it is already gone?"
 msgstr "Parece que el artículo que intentaste eliminar no existe. ¿Tal vez ya haya desaparecido?"
 
-# src/routes/posts.rs:672
+# src/routes/posts.rs:673
 msgid "Couldn't obtain enough information about your account. Please make sure your username is correct."
 msgstr "No se pudo obtener suficiente información sobre su cuenta. Por favor, asegúrese de que su nombre de usuario es correcto."
 
@@ -245,45 +265,70 @@ msgstr "Aquí está el enlace para restablecer tu contraseña: {0}"
 msgid "Your password was successfully reset."
 msgstr "Su contraseña se ha restablecido correctamente."
 
-# src/routes/user.rs:74
+# src/routes/user.rs:87
 msgid "To access your dashboard, you need to be logged in"
 msgstr "Para acceder a su panel de control, necesita estar conectado"
 
-# src/routes/user.rs:96
+# src/routes/user.rs:109
 msgid "You are no longer following {}."
 msgstr "Ya no estás siguiendo a {}."
 
-# src/routes/user.rs:113
+# src/routes/user.rs:126
 msgid "You are now following {}."
 msgstr "Ahora estás siguiendo a {}."
 
-# src/routes/user.rs:190
+# src/routes/user.rs:203
 msgid "To subscribe to someone, you need to be logged in"
 msgstr "Para suscribirse a alguien, necesita estar conectado"
 
-# src/routes/user.rs:299
+# src/routes/user.rs:323
 msgid "To edit your profile, you need to be logged in"
 msgstr "Para editar su perfil, necesita estar conectado"
 
-# src/routes/user.rs:345
+# src/routes/user.rs:369
 msgid "Your profile has been updated."
 msgstr "Tu perfil ha sido actualizado."
 
-# src/routes/user.rs:373
+# src/routes/user.rs:397
 msgid "Your account has been deleted."
 msgstr "Tu cuenta ha sido eliminada."
 
-# src/routes/user.rs:379
+# src/routes/user.rs:403
 msgid "You can't delete someone else's account."
 msgstr "No puedes eliminar la cuenta de otra persona."
 
-# src/routes/user.rs:463
-msgid "Registrations are closed on this instance."
-msgstr "Los registros están cerrados en esta instancia."
+msgid "Create your account"
+msgstr "Crea tu cuenta"
 
-# src/routes/user.rs:486
-msgid "Your account has been created. Now you just need to log in, before you can use it."
-msgstr "Tu cuenta ha sido creada. Ahora solo necesitas iniciar sesión, antes de poder usarla."
+msgid "Create an account"
+msgstr "Crear una cuenta"
+
+msgid "Email"
+msgstr "Correo electrónico"
+
+msgid "Email confirmation"
+msgstr ""
+
+msgid "Apologies, but registrations are closed on this particular instance. You can, however, find a different one."
+msgstr "Lo sentimos, pero las inscripciones están cerradas en esta instancia. Sin embargo, puede encontrar una instancia distinta."
+
+msgid "Registration"
+msgstr ""
+
+msgid "Check your inbox!"
+msgstr "Revise su bandeja de entrada!"
+
+msgid "We sent a mail to the address you gave us, with a link for registration."
+msgstr ""
+
+msgid "Username"
+msgstr "Nombre de usuario"
+
+msgid "Password"
+msgstr "Contraseña"
+
+msgid "Password confirmation"
+msgstr "Confirmación de contraseña"
 
 msgid "Media upload"
 msgstr "Subir medios"
@@ -422,27 +467,6 @@ msgstr "Suscriptores"
 
 msgid "Subscriptions"
 msgstr "Suscripciones"
-
-msgid "Create your account"
-msgstr "Crea tu cuenta"
-
-msgid "Create an account"
-msgstr "Crear una cuenta"
-
-msgid "Username"
-msgstr "Nombre de usuario"
-
-msgid "Email"
-msgstr "Correo electrónico"
-
-msgid "Password"
-msgstr "Contraseña"
-
-msgid "Password confirmation"
-msgstr "Confirmación de contraseña"
-
-msgid "Apologies, but registrations are closed on this particular instance. You can, however, find a different one."
-msgstr "Lo sentimos, pero las inscripciones están cerradas en esta instancia. Sin embargo, puede encontrar una instancia distinta."
 
 msgid "{0}'s subscriptions"
 msgstr "Suscripciones de {0}"
@@ -840,9 +864,6 @@ msgstr "Confirmación"
 
 msgid "Update password"
 msgstr "Actualizar contraseña"
-
-msgid "Check your inbox!"
-msgstr "Revise su bandeja de entrada!"
 
 msgid "We sent a mail to the address you gave us, with a link to reset your password."
 msgstr "Enviamos un correo a la dirección que nos dio, con un enlace para restablecer su contraseña."
