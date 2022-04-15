@@ -69,3 +69,72 @@ impl Tag {
             .map_err(Error::from)
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::tests::db;
+    use crate::{diesel::Connection, inbox::tests::fill_database};
+    use assert_json_diff::assert_json_eq;
+    use serde_json::to_value;
+
+    #[test]
+    fn to_activity() {
+        let conn = &db();
+        conn.test_transaction::<_, Error, _>(|| {
+            fill_database(conn);
+            let tag = Tag {
+                id: 0,
+                tag: "a_tag".into(),
+                is_hashtag: false,
+                post_id: 0,
+            };
+            let act = tag.to_activity()?;
+            let expected = json!({
+                "href": "https://plu.me/tag/a_tag",
+                "name": "a_tag",
+                "type": "Hashtag"
+            });
+
+            assert_json_eq!(to_value(&act)?, expected);
+
+            Ok(())
+        })
+    }
+
+    #[test]
+    fn from_activity() {
+        let conn = &db();
+        conn.test_transaction::<_, Error, _>(|| {
+            let (posts, _users, _blogs) = fill_database(conn);
+            let post_id = posts[0].id;
+            let mut ht = Hashtag::default();
+            ht.set_href_string(ap_url(&format!("https://plu.me/tag/a_tag")))?;
+            ht.set_name_string("a_tag".into())?;
+            let tag = Tag::from_activity(conn, &ht, post_id, true)?;
+
+            assert_eq!(&tag.tag, "a_tag");
+            assert!(tag.is_hashtag);
+
+            Ok(())
+        });
+    }
+
+    #[test]
+    fn build_activity() {
+        let conn = &db();
+        conn.test_transaction::<_, Error, _>(|| {
+            fill_database(conn);
+            let act = Tag::build_activity("a_tag".into())?;
+            let expected = json!({
+                "href": "https://plu.me/tag/a_tag",
+                "name": "a_tag",
+                "type": "Hashtag"
+            });
+
+            assert_json_eq!(to_value(&act)?, expected);
+
+            Ok(())
+        });
+    }
+}

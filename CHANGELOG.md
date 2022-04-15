@@ -4,6 +4,20 @@
 
 ## [Unreleased] - ReleaseDate
 
+### Added
+
+- Basque language (#1013)
+
+### Changed
+
+- Bump Rust to nightly 2022-01-26 (#1015)
+
+### Fixed
+
+- Add explanation of sign-up step at sign-up page when email sign-up mode (#1012)
+- Add NOT NULL constraint to email_blocklist table fields (#1016)
+- Don't fill empty content when switching rich editor (#1017)
+
 ## [[0.7.1]] - 2022-01-12
 
 ### Added
