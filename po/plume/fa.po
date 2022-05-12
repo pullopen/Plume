@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: plume\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-15 16:33-0700\n"
-"PO-Revision-Date: 2022-01-12 01:28\n"
+"PO-Revision-Date: 2022-05-10 17:54\n"
 "Last-Translator: \n"
 "Language-Team: Persian\n"
 "Language: fa_IR\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 # src/template_utils.rs:105
 msgid "Someone"
-msgstr ""
+msgstr "شخصی"
 
 # src/template_utils.rs:107
 msgid "{0} commented on your article."
@@ -119,11 +119,11 @@ msgstr "ثبت‌نام روی این نمونه بسته شده است."
 
 # src/routes/email_signups.rs:119
 msgid "User registration"
-msgstr ""
+msgstr "نام‌نویسی کاربر"
 
 # src/routes/email_signups.rs:120
 msgid "Here is the link for registration: {0}"
-msgstr ""
+msgstr "این‌جا پیوندی برای نام‌نویسی است: {0}"
 
 # src/routes/email_signups.rs:219
 msgid "Your account has been created. Now you just need to log in, before you can use it."
@@ -307,19 +307,19 @@ msgid "Email"
 msgstr "رایانامه"
 
 msgid "Email confirmation"
-msgstr ""
+msgstr "تأیید رایانامه"
 
 msgid "Apologies, but registrations are closed on this particular instance. You can, however, find a different one."
 msgstr "معذرت می‌خواهیم. ثبت‌نام روی این نمونه خاص بسته شده است. با این حال شما می‌توانید یک نمونه دیگر پیدا کنید."
 
 msgid "Registration"
-msgstr ""
+msgstr "نام‌نویسی"
 
 msgid "Check your inbox!"
 msgstr "صندوق پستی خود را بررسی کنید!"
 
 msgid "We sent a mail to the address you gave us, with a link for registration."
-msgstr ""
+msgstr "نامه‌ای همراه با پیوند نام‌نویسی به نشانی‌ای که به‌مان دادید، فرستادیم."
 
 msgid "Username"
 msgstr "نام کاربری"
@@ -391,7 +391,7 @@ msgid "Menu"
 msgstr "منو"
 
 msgid "Search"
-msgstr "جستجو"
+msgstr "جست‌وجو"
 
 msgid "Dashboard"
 msgstr "پیش‌خوان"
@@ -427,7 +427,7 @@ msgid "Source code"
 msgstr "کد منبع"
 
 msgid "Matrix room"
-msgstr "اتاق گفتگوی ماتریس"
+msgstr "اتاق ماتریکس"
 
 msgid "Admin"
 msgstr "مدیر"
@@ -964,10 +964,10 @@ msgid "Draft"
 msgstr "پیش‌نویس"
 
 msgid "Search result(s) for \"{0}\""
-msgstr "نتایج جستجو برای «{0}»"
+msgstr "نتایج جست‌وجو برای «{0}»"
 
 msgid "Search result(s)"
-msgstr "نتایج جستجو"
+msgstr "نتایج جست‌وجو"
 
 msgid "No results for your query"
 msgstr "نتیجه‌ای برای درخواست شما وجود ندارد"
@@ -976,7 +976,7 @@ msgid "No more results for your query"
 msgstr "نتیجهٔ دیگری برای درخواست شما وجود ندارد"
 
 msgid "Advanced search"
-msgstr "جستجوی پیشرفته"
+msgstr "جست‌وجوی پیشرفته"
 
 msgid "Article title matching these words"
 msgstr "عنوان مقاله با این واژگان انطباق داشته باشد"

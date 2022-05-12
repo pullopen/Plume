@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: plume\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-15 16:33-0700\n"
-"PO-Revision-Date: 2022-01-26 13:16\n"
+"PO-Revision-Date: 2022-05-09 09:59\n"
 "Last-Translator: \n"
 "Language-Team: Slovak\n"
 "Language: sk_SK\n"
@@ -319,7 +319,7 @@ msgid "Check your inbox!"
 msgstr "Pozri si svoju Doručenú poštu!"
 
 msgid "We sent a mail to the address you gave us, with a link for registration."
-msgstr ""
+msgstr "Email s odkazom pre registráciu sme odoslali na adresu, ktorú si nám dal/a."
 
 msgid "Username"
 msgstr "Užívateľské meno"
@@ -676,13 +676,13 @@ msgid "Notify the user?"
 msgstr "Oboznámiť používateľa?"
 
 msgid "Optional, shows a message to the user when they attempt to create an account with that address"
-msgstr ""
+msgstr "Voliteľné, ukáže správu používateľovi, keby sa pokúsil/a vytvoriť si účet s danou adresou"
 
 msgid "Blocklisting notification"
 msgstr "Oboznámenie o blokovaní"
 
 msgid "The message to be shown when the user attempts to create an account with this email address"
-msgstr ""
+msgstr "Správa, ktorá má byť zobrazená, keď sa užívateľ pokúsi vytvoriť účet s touto emailovou adresou"
 
 msgid "Add blocklisted address"
 msgstr "Pridaj blokovanú adresu"

@@ -4,19 +4,31 @@
 
 ## [Unreleased] - ReleaseDate
 
+## [[0.7.2]] - 2022-05-11
+
 ### Added
 
 - Basque language (#1013)
+- Unit tests for ActivityPub (#1021)
+- Move to action area after liking/boosting/commenting (#1074)
 
 ### Changed
 
 - Bump Rust to nightly 2022-01-26 (#1015)
+- Remove "Latest articles" timeline (#1069)
+- Change order of timeline tabs (#1069, #1070, #1072)
+- Migrate ActivityPub-related crates from activitypub 0.1 to activitystreams 0.7 (#1022)
 
 ### Fixed
 
 - Add explanation of sign-up step at sign-up page when email sign-up mode (#1012)
 - Add NOT NULL constraint to email_blocklist table fields (#1016)
 - Don't fill empty content when switching rich editor (#1017)
+- Fix accept header (#1058)
+- Render 404 page instead of 500 when data is not found (#1062)
+- Reuse reqwest client on broadcasting (#1059)
+- Reduce broadcasting HTTP request at once to prevent them being timed out (#1068, #1071)
+- Some ActivityPub data (#1021)
 
 ## [[0.7.1]] - 2022-01-12
 
@@ -250,7 +262,8 @@
 - Ability to create multiple blogs
 
 <!-- next-url -->
-[Unreleased]: https://github.com/Plume-org/Plume/compare/0.7.1...HEAD
+[Unreleased]: https://github.com/Plume-org/Plume/compare/0.7.2...HEAD
+[[0.7.2]]: https://github.com/Plume-org/Plume/compare/0.7.1...0.7.2
 [[0.7.1]]: https://github.com/Plume-org/Plume/compare/0.7.0...0.7.1
 [[0.7.0]]: https://github.com/Plume-org/Plume/compare/0.6.0...0.7.0
 [[0.6.0]]: https://github.com/Plume-org/Plume/compare/0.5.0...0.6.0

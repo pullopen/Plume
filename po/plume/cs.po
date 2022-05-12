@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: plume\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-15 16:33-0700\n"
-"PO-Revision-Date: 2022-01-12 01:28\n"
+"PO-Revision-Date: 2022-05-09 09:58\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Language: cs_CZ\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 # src/template_utils.rs:105
 msgid "Someone"
-msgstr ""
+msgstr "Někdo"
 
 # src/template_utils.rs:107
 msgid "{0} commented on your article."
@@ -119,11 +119,11 @@ msgstr "Registrace jsou na téhle instanci uzavřeny."
 
 # src/routes/email_signups.rs:119
 msgid "User registration"
-msgstr ""
+msgstr "Registrace uživatele"
 
 # src/routes/email_signups.rs:120
 msgid "Here is the link for registration: {0}"
-msgstr ""
+msgstr "Zde je odkaz k registraci: {0}"
 
 # src/routes/email_signups.rs:219
 msgid "Your account has been created. Now you just need to log in, before you can use it."
@@ -307,13 +307,13 @@ msgid "Email"
 msgstr "Email"
 
 msgid "Email confirmation"
-msgstr ""
+msgstr "Potvrzení emailem"
 
 msgid "Apologies, but registrations are closed on this particular instance. You can, however, find a different one."
 msgstr "Omlouváme se, ale registrace je uzavřena na této konkrétní instanci. Můžete však najít jinou."
 
 msgid "Registration"
-msgstr ""
+msgstr "Registrace"
 
 msgid "Check your inbox!"
 msgstr "Zkontrolujte svou příchozí poštu!"
@@ -664,16 +664,16 @@ msgid "Blocklisted Emails"
 msgstr ""
 
 msgid "Email address"
-msgstr ""
+msgstr "Emailová adresa"
 
 msgid "The email address you wish to block. In order to block domains, you can use globbing syntax, for example '*@example.com' blocks all addresses from example.com"
 msgstr ""
 
 msgid "Note"
-msgstr ""
+msgstr "Poznámka"
 
 msgid "Notify the user?"
-msgstr ""
+msgstr "Upozornit uživatele?"
 
 msgid "Optional, shows a message to the user when they attempt to create an account with that address"
 msgstr ""
@@ -906,7 +906,7 @@ msgid "Blog banner"
 msgstr "Blog banner"
 
 msgid "Custom theme"
-msgstr ""
+msgstr "Vlastní vzhled"
 
 msgid "Update blog"
 msgstr "Aktualizovat blog"

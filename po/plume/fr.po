@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: plume\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-15 16:33-0700\n"
-"PO-Revision-Date: 2022-01-12 01:28\n"
+"PO-Revision-Date: 2022-05-09 09:59\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 # src/template_utils.rs:105
 msgid "Someone"
-msgstr ""
+msgstr "Quelqu'un"
 
 # src/template_utils.rs:107
 msgid "{0} commented on your article."
@@ -119,11 +119,11 @@ msgstr "Les inscriptions sont fermées sur cette instance."
 
 # src/routes/email_signups.rs:119
 msgid "User registration"
-msgstr ""
+msgstr "Inscription de l'utilisateur"
 
 # src/routes/email_signups.rs:120
 msgid "Here is the link for registration: {0}"
-msgstr ""
+msgstr "Voici le lien pour vous inscrire : {0}"
 
 # src/routes/email_signups.rs:219
 msgid "Your account has been created. Now you just need to log in, before you can use it."
@@ -307,19 +307,19 @@ msgid "Email"
 msgstr "Adresse électronique"
 
 msgid "Email confirmation"
-msgstr ""
+msgstr "Confirmer l'email"
 
 msgid "Apologies, but registrations are closed on this particular instance. You can, however, find a different one."
 msgstr "Désolé, mais les inscriptions sont fermées sur cette instance en particulier. Vous pouvez, toutefois, en trouver une autre."
 
 msgid "Registration"
-msgstr ""
+msgstr "Inscription"
 
 msgid "Check your inbox!"
 msgstr "Vérifiez votre boîte de réception !"
 
 msgid "We sent a mail to the address you gave us, with a link for registration."
-msgstr ""
+msgstr "Nous avons envoyé un mail à l'adresse que vous nous avez donnée, avec un lien pour réinitialiser votre mot de passe."
 
 msgid "Username"
 msgstr "Nom d’utilisateur"
