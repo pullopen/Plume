@@ -1704,12 +1704,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "heck"
-version = "0.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2540771e65fc8cb83cd6e8a237f70c319bd5c29f78ed1084ba5d50eeac86f7f9"
-
-[[package]]
 name = "hermit-abi"
 version = "0.1.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2169,9 +2163,9 @@ dependencies = [
 
 [[package]]
 name = "ldap3"
-version = "0.10.4"
+version = "0.10.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "52110b91cbe3a92ba70d4bd64366bfe5c8b8698516155db7041ae3dd155a4fc3"
+checksum = "ef35dc747152dd47bdc6aaeb35a232f84cbc8d84ae4cb9673aea810a6570ab8f"
 dependencies = [
  "async-trait",
  "bytes 1.1.0",
@@ -3265,7 +3259,6 @@ dependencies = [
  "chrono",
  "flume",
  "futures 0.3.21",
- "heck",
  "hex",
  "once_cell",
  "openssl",
@@ -4052,9 +4045,9 @@ dependencies = [
 
 [[package]]
 name = "rsass"
-version = "0.24.0"
+version = "0.25.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d74a71f39f2d0e35ada983c76aeaa3a58b6c5735c8865073a87d190219c64eb1"
+checksum = "c0a591e01b92182a881aa6d89df6e56c6923a6589662c0194921466024d7d78b"
 dependencies = [
  "fastrand",
  "lazy_static",
@@ -4064,6 +4057,7 @@ dependencies = [
  "num-integer",
  "num-rational",
  "num-traits 0.2.15",
+ "tracing",
 ]
 
 [[package]]
