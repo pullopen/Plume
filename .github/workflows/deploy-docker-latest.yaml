@@ -27,4 +27,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: plumeorg/plume:latest
+          tags: pullopen/plume:latest
