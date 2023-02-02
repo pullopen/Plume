@@ -231,17 +231,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "atomicwrites"
-version = "0.2.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6a2baf2feb820299c53c7ad1cc4f5914a220a1cb76d7ce321d2522a94b54651f"
-dependencies = [
- "nix 0.14.1",
- "tempdir",
- "winapi 0.3.9",
-]
-
-[[package]]
 name = "atty"
 version = "0.2.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -325,12 +314,6 @@ checksum = "0b25d992356d2eb0ed82172f5248873db5560c4721f564b13cb5193bda5e668e"
 dependencies = [
  "byteorder",
 ]
-
-[[package]]
-name = "base64"
-version = "0.12.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3441f0f7b02788e948e47f457ca01f1d7e6d92c693bc132c22b087d3141c03ff"
 
 [[package]]
 name = "base64"
@@ -713,40 +696,16 @@ dependencies = [
 
 [[package]]
 name = "crossbeam"
-version = "0.7.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "69323bff1fb41c635347b8ead484a5ca6c3f11914d784170b158d8449ab07f8e"
-dependencies = [
- "cfg-if 0.1.10",
- "crossbeam-channel 0.4.4",
- "crossbeam-deque 0.7.4",
- "crossbeam-epoch 0.8.2",
- "crossbeam-queue 0.2.3",
- "crossbeam-utils 0.7.2",
-]
-
-[[package]]
-name = "crossbeam"
 version = "0.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2801af0d36612ae591caa9568261fddce32ce6e08a7275ea334a06a4ad021a2c"
 dependencies = [
  "cfg-if 1.0.0",
- "crossbeam-channel 0.5.6",
+ "crossbeam-channel",
  "crossbeam-deque 0.8.2",
  "crossbeam-epoch 0.9.13",
  "crossbeam-queue 0.3.8",
  "crossbeam-utils 0.8.14",
-]
-
-[[package]]
-name = "crossbeam-channel"
-version = "0.4.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b153fe7cbef478c567df0f972e02e6d736db11affe43dfc9c56a9374d1adfb87"
-dependencies = [
- "crossbeam-utils 0.7.2",
- "maybe-uninit",
 ]
 
 [[package]]
@@ -891,7 +850,7 @@ version = "3.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1631ca6e3c59112501a9d87fd86f21591ff77acd31331e8a73f8d80a65bbdd71"
 dependencies = [
- "nix 0.26.1",
+ "nix",
  "windows-sys 0.42.0",
 ]
 
@@ -2434,7 +2393,7 @@ checksum = "ceb3ba4b1279b57af415bff512d7b35616baf2c64229cc8e949164e0136fe207"
 dependencies = [
  "lindera",
  "lindera-core",
- "tantivy 0.14.0",
+ "tantivy",
 ]
 
 [[package]]
@@ -2822,19 +2781,6 @@ checksum = "e4a24736216ec316047a1fc4252e27dabb04218aa4a3f37c6e7ddbf1f9782b54"
 
 [[package]]
 name = "nix"
-version = "0.14.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6c722bee1037d430d0f8e687bbdbf222f27cc6e4e68d5caf630857bb2b6dbdce"
-dependencies = [
- "bitflags 1.3.2",
- "cc",
- "cfg-if 0.1.10",
- "libc",
- "void",
-]
-
-[[package]]
-name = "nix"
 version = "0.26.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "46a58d1d356c6597d08cde02c2f09d785b09e28711837b1ed667dc652c08a694"
@@ -3068,24 +3014,6 @@ name = "overload"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b15813163c1d831bf4a13c3610c05c0d03b39feb07f7e09fa234dac9b15aaf39"
-
-[[package]]
-name = "owned-read"
-version = "0.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b66d1e235abcebc845cf93550b89b74f468c051496fafb433ede4104b9f71ba1"
-dependencies = [
- "stable_deref_trait",
-]
-
-[[package]]
-name = "owning_ref"
-version = "0.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6ff55baddef9e4ad00f88b6c743a2a8062d4c6ade126c2a528644b8e444d52ce"
-dependencies = [
- "stable_deref_trait",
-]
 
 [[package]]
 name = "parking_lot"
@@ -3414,7 +3342,7 @@ dependencies = [
  "serde_derive",
  "serde_json",
  "shrinkwraprs",
- "tantivy 0.13.3",
+ "tantivy",
  "tracing",
  "url 2.3.1",
  "walkdir",
@@ -3806,7 +3734,7 @@ version = "1.10.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cac410af5d00ab6884528b4ab69d1e8e146e8d471201800fa1b4524126de6ad3"
 dependencies = [
- "crossbeam-channel 0.5.6",
+ "crossbeam-channel",
  "crossbeam-deque 0.8.2",
  "crossbeam-utils 0.8.14",
  "num_cpus",
@@ -4652,51 +4580,6 @@ dependencies = [
 
 [[package]]
 name = "tantivy"
-version = "0.13.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ac3012f53bceda69a3a50a510a3d53fbf6af60b3c4df2801a4c9c5132d238919"
-dependencies = [
- "atomicwrites",
- "base64 0.12.3",
- "bitpacking",
- "byteorder",
- "census",
- "chrono",
- "crc32fast",
- "crossbeam 0.7.3",
- "downcast-rs",
- "fail",
- "failure",
- "fnv",
- "fs2",
- "futures 0.3.25",
- "htmlescape",
- "levenshtein_automata",
- "log 0.4.17",
- "memmap",
- "murmurhash32",
- "notify",
- "num_cpus",
- "once_cell",
- "owned-read",
- "owning_ref",
- "rayon",
- "regex",
- "rust-stemmers",
- "serde 1.0.152",
- "serde_json",
- "smallvec 1.10.0",
- "snap",
- "stable_deref_trait",
- "tantivy-fst",
- "tantivy-query-grammar 0.13.0",
- "tempfile",
- "uuid 0.8.2",
- "winapi 0.3.9",
-]
-
-[[package]]
-name = "tantivy"
 version = "0.14.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "edca90bddda472f39fdc74a031d61d52b08b1de97f2a704afae726a8004abb0d"
@@ -4707,7 +4590,7 @@ dependencies = [
  "census",
  "chrono",
  "crc32fast",
- "crossbeam 0.8.2",
+ "crossbeam",
  "downcast-rs",
  "fail",
  "fnv",
@@ -4730,7 +4613,7 @@ dependencies = [
  "snap",
  "stable_deref_trait",
  "tantivy-fst",
- "tantivy-query-grammar 0.14.0",
+ "tantivy-query-grammar",
  "tempfile",
  "thiserror",
  "uuid 0.8.2",
@@ -4746,15 +4629,6 @@ dependencies = [
  "byteorder",
  "regex-syntax 0.4.2",
  "utf8-ranges",
-]
-
-[[package]]
-name = "tantivy-query-grammar"
-version = "0.13.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5ea03b8224ca9ff4ccfc7dfab790527c8a9d8edbc53f4677bdf6ba0fd8000c75"
-dependencies = [
- "combine",
 ]
 
 [[package]]
@@ -4775,16 +4649,6 @@ dependencies = [
  "filetime",
  "libc",
  "xattr",
-]
-
-[[package]]
-name = "tempdir"
-version = "0.3.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "15f2b5fb00ccdf689e0149d1b1b3c03fead81c2b37735d812fa8bddbbf41b6d8"
-dependencies = [
- "rand 0.4.6",
- "remove_dir_all",
 ]
 
 [[package]]
@@ -5523,12 +5387,6 @@ name = "version_check"
 version = "0.9.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "49874b5167b65d7193b8aba1567f5c7d93d001cafc34600cee003eda787e483f"
-
-[[package]]
-name = "void"
-version = "1.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6a02e4885ed3bc0f2de90ea6dd45ebcbb66dacffe03547fadbb0eeae2770887d"
 
 [[package]]
 name = "walkdir"
