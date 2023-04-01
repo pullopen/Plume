@@ -15,7 +15,10 @@ use activitystreams::{
     prelude::*,
 };
 use chrono::{NaiveDateTime, Utc};
-use diesel::{self, BelongingToDsl, ExpressionMethods, OptionalExtension, QueryDsl, RunQueryDsl};
+use diesel::{
+    self, BelongingToDsl, BoolExpressionMethods, ExpressionMethods, OptionalExtension, QueryDsl,
+    RunQueryDsl, TextExpressionMethods,
+};
 use ldap3::{LdapConn, Scope, SearchEntry};
 use openssl::{
     hash::MessageDigest,
@@ -186,21 +189,43 @@ impl User {
     pub fn count_local(conn: &Connection) -> Result<i64> {
         users::table
             .filter(users::instance_id.eq(Instance::get_local()?.id))
+            .filter(users::role.ne(Role::Instance as i32))
             .count()
             .get_result(conn)
             .map_err(Error::from)
     }
 
-    pub fn find_by_fqn(conn: &DbConn, fqn: &str) -> Result<User> {
+    pub fn find_by_fqn(conn: &Connection, fqn: &str) -> Result<User> {
         let from_db = users::table
             .filter(users::fqn.eq(fqn))
-            .first(&**conn)
+            .first(conn)
             .optional()?;
         if let Some(from_db) = from_db {
             Ok(from_db)
         } else {
             User::fetch_from_webfinger(conn, fqn)
         }
+    }
+
+    pub fn search_local_by_name(
+        conn: &Connection,
+        name: &str,
+        (min, max): (i32, i32),
+    ) -> Result<Vec<User>> {
+        users::table
+            .filter(users::instance_id.eq(Instance::get_local()?.id))
+            .filter(users::role.ne(Role::Instance as i32))
+            // TODO: use `ilike` instead of `like` for PostgreSQL
+            .filter(
+                users::username
+                    .like(format!("%{}%", name))
+                    .or(users::display_name.like(format!("%{}%", name))),
+            )
+            .order(users::username.asc())
+            .offset(min.into())
+            .limit((max - min).into())
+            .load::<User>(conn)
+            .map_err(Error::from)
     }
 
     /**
@@ -219,7 +244,7 @@ impl User {
         .map_err(Error::from)
     }
 
-    fn fetch_from_webfinger(conn: &DbConn, acct: &str) -> Result<User> {
+    fn fetch_from_webfinger(conn: &Connection, acct: &str) -> Result<User> {
         let link = resolve(acct.to_owned(), true)?
             .links
             .into_iter()
@@ -431,6 +456,7 @@ impl User {
     pub fn get_local_page(conn: &Connection, (min, max): (i32, i32)) -> Result<Vec<User>> {
         users::table
             .filter(users::instance_id.eq(Instance::get_local()?.id))
+            .filter(users::role.ne(Role::Instance as i32))
             .order(users::username.asc())
             .offset(min.into())
             .limit((max - min).into())
@@ -921,15 +947,15 @@ impl IntoId for User {
 
 impl Eq for User {}
 
-impl FromId<DbConn> for User {
+impl FromId<Connection> for User {
     type Error = Error;
     type Object = CustomPerson;
 
-    fn from_db(conn: &DbConn, id: &str) -> Result<Self> {
+    fn from_db(conn: &Connection, id: &str) -> Result<Self> {
         Self::find_by_ap_url(conn, id)
     }
 
-    fn from_activity(conn: &DbConn, acct: CustomPerson) -> Result<Self> {
+    fn from_activity(conn: &Connection, acct: CustomPerson) -> Result<Self> {
         let actor = acct.ap_actor_ref();
         let username = actor
             .preferred_username()
@@ -1030,7 +1056,7 @@ impl FromId<DbConn> for User {
     }
 }
 
-impl AsActor<&DbConn> for User {
+impl AsActor<&Connection> for User {
     fn get_inbox_url(&self) -> String {
         self.inbox_url.clone()
     }
@@ -1046,11 +1072,11 @@ impl AsActor<&DbConn> for User {
     }
 }
 
-impl AsObject<User, Delete, &DbConn> for User {
+impl AsObject<User, Delete, &Connection> for User {
     type Error = Error;
     type Output = ();
 
-    fn activity(self, conn: &DbConn, actor: User, _id: &str) -> Result<()> {
+    fn activity(self, conn: &Connection, actor: User, _id: &str) -> Result<()> {
         if self.id == actor.id {
             self.delete(conn).map(|_| ())
         } else {
