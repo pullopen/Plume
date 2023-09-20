@@ -2,12 +2,11 @@ use activitystreams::activity::{Announce, Create, Delete, Follow, Like, Undo, Up
 
 use crate::{
     comments::Comment,
-    db_conn::DbConn,
     follows, likes,
     posts::{Post, PostUpdate},
     reshares::Reshare,
     users::User,
-    Error, CONFIG,
+    Connection, Error, CONFIG,
 };
 use plume_common::activity_pub::inbox::Inbox;
 
@@ -46,8 +45,8 @@ impl_into_inbox_result! {
     Reshare => Reshared
 }
 
-pub fn inbox(conn: &DbConn, act: serde_json::Value) -> Result<InboxResult, Error> {
-    Inbox::handle(&**conn, act)
+pub fn inbox(conn: &Connection, act: serde_json::Value) -> Result<InboxResult, Error> {
+    Inbox::handle(conn, act)
         .with::<User, Announce, Post>(CONFIG.proxy())
         .with::<User, Create, Comment>(CONFIG.proxy())
         .with::<User, Create, Post>(CONFIG.proxy())
