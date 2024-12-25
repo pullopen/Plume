@@ -29,6 +29,11 @@ RUN cargo clean
 FROM debian:stable-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    wget \
+    dpkg
+RUN wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1-1ubuntu2.1~18.04.23_amd64.deb
+RUN dpkg -i libssl1.1_1.1.1-1ubuntu2.1~18.04.23_amd64.deb
+RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     libpq5 \
     libssl1.1
